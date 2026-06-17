@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ServiceLanding } from "@/app/components/ServiceLanding";
-import { serviceBySlug, services } from "@/app/data/services";
+import { absoluteUrl, serviceAdContent, serviceBySlug, services } from "@/app/data/services";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -19,9 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {};
   }
 
+  const adContent = serviceAdContent[service.slug];
+
   return {
     title: service.seoTitle,
     description: service.seoDescription,
+    keywords: adContent.keywords,
     alternates: {
       canonical: `/services/${service.slug}`
     },
@@ -31,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `/services/${service.slug}`,
       images: [
         {
-          url: service.heroImage.src,
+          url: absoluteUrl(service.heroImage.src),
           alt: service.heroImage.alt
         }
       ]
@@ -40,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: "summary_large_image",
       title: service.seoTitle,
       description: service.seoDescription,
-      images: [service.heroImage.src]
+      images: [absoluteUrl(service.heroImage.src)]
     }
   };
 }

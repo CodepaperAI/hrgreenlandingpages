@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/app/data/services";
 import "./globals.css";
 
 const gtmId = "GTM-KJDG3Q2K";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.hrgreenrootslandscaping.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "HR Greenroots Landscaping | Service Landing Pages",
     template: "%s | HR Greenroots Landscaping"

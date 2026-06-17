@@ -1,16 +1,14 @@
 import type { MetadataRoute } from "next";
-import { services } from "@/app/data/services";
+import { services, siteUrl } from "@/app/data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.hrgreenrootslandscaping.com";
-
   return [
     {
-      url: base,
+      url: siteUrl,
       lastModified: new Date()
     },
     ...services.map((service) => ({
-      url: `${base}/services/${service.slug}`,
+      url: `${siteUrl}/services/${service.slug}`,
       lastModified: new Date()
     }))
   ];

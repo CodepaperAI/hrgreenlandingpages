@@ -8,6 +8,18 @@ export type ServiceItem = {
   text: string;
 };
 
+export type ServiceFaq = {
+  question: string;
+  answer: string;
+};
+
+export type ServiceAdContent = {
+  proof: ServiceItem[];
+  quoteFactors: ServiceItem[];
+  faqs: ServiceFaq[];
+  keywords: string[];
+};
+
 export type ServiceImage = {
   src: string;
   alt: string;
@@ -46,6 +58,10 @@ export const whatsappHref = "https://wa.me/16479156507";
 export const address =
   "100 Matheson Blvd E unit 202, Mississauga, ON L4Z 3P8, Canada";
 export const sourceSite = "https://www.hrgreenrootslandscaping.com";
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://hrgreenroots-ads.vercel.app";
+export const businessName = "HR Greenroots Landscaping";
+export const instagramUrl = "https://www.instagram.com/hrgreenroots";
 
 export const serviceAreas = [
   "Toronto",
@@ -482,3 +498,321 @@ export const services: Service[] = [
 ];
 
 export const serviceBySlug = new Map(services.map((service) => [service.slug, service]));
+
+const areaList = serviceAreas.slice(0, 7).join(", ");
+
+export const defaultProofPoints: ServiceItem[] = [
+  {
+    title: "Free quote request",
+    text: "Send the project details from the landing page and HR Greenroots can follow up with the next step."
+  },
+  {
+    title: "Call or WhatsApp",
+    text: `Reach the team directly at ${phoneDisplay} if you want to talk through the project before booking.`
+  },
+  {
+    title: "GTA service coverage",
+    text: `Local landscaping support across ${areaList}, and surrounding Ontario communities.`
+  }
+];
+
+export const serviceAdContent: Record<string, ServiceAdContent> = {
+  "sod-installation": {
+    proof: [
+      {
+        title: "Soil prep before sod",
+        text: "The page is built around prep, grading, leveling, and tight sod placement so the lawn has a better chance to root evenly."
+      },
+      {
+        title: "Fast lawn transformation",
+        text: "A strong fit for new builds, worn-out lawns, patchy grass, or yards that need a finished look quickly."
+      },
+      {
+        title: "Clear aftercare handoff",
+        text: "Watering, early mowing, and settling expectations are part of the installation conversation."
+      }
+    ],
+    quoteFactors: [
+      {
+        title: "Project type",
+        text: "The source page calls out new builds, lawn replacements, and tired yards that need a finished lawn quickly."
+      },
+      {
+        title: "Base preparation",
+        text: "The service is framed around soil preparation, grading, leveling, and tight sod installation."
+      },
+      {
+        title: "Aftercare expectations",
+        text: "The page includes watering, early mowing, and settlement guidance as part of setting the new lawn up."
+      }
+    ],
+    keywords: [
+      "sod installation",
+      "new lawn installation",
+      "lawn replacement",
+      "Toronto sod installer",
+      "GTA landscaping"
+    ],
+    faqs: [
+      {
+        question: "What sod projects does HR Greenroots describe?",
+        answer:
+          "The source page describes sod installation for new builds, lawn replacements, and tired yards that need a finished lawn quickly."
+      },
+      {
+        question: "Does HR Greenroots prepare the soil before laying sod?",
+        answer:
+          "Yes. The sod page describes preparation, grading, leveling, and base improvement before the sod is placed."
+      },
+      {
+        question: "How soon does a new sod lawn look finished?",
+        answer:
+          "Fresh sod gives the property a finished green surface immediately, then needs proper watering and early care while it roots."
+      },
+      {
+        question: "Where is sod installation available?",
+        answer: `HR Greenroots lists service coverage across ${serviceAreas.join(", ")}.`
+      }
+    ]
+  },
+  "interlocking-paver-installation": {
+    proof: [
+      {
+        title: "Base-first installation",
+        text: "The landing page emphasizes excavation, aggregate prep, compaction, drainage, edge restraint, and joint finishing."
+      },
+      {
+        title: "Built for daily use",
+        text: "Patios, driveways, walkways, and pool surrounds are planned around movement, load, and long-term appearance."
+      },
+      {
+        title: "Pattern and border planning",
+        text: "Paver style, border choice, and layout are treated as part of the design instead of an afterthought."
+      }
+    ],
+    quoteFactors: [
+      {
+        title: "Finished surface",
+        text: "The source page lists driveways, patios, walkways, and pool surrounds as common paver installation scopes."
+      },
+      {
+        title: "Base and grade",
+        text: "The process is built around excavation, a compacted structural base, setting grade, and drainage."
+      },
+      {
+        title: "Pattern and finish",
+        text: "The page describes choosing patterns, borders, tones, and scale to suit the home and landscape."
+      }
+    ],
+    keywords: [
+      "interlocking pavers",
+      "paver installation",
+      "driveway pavers",
+      "patio pavers",
+      "Oakville interlocking"
+    ],
+    faqs: [
+      {
+        question: "What paver projects does HR Greenroots handle?",
+        answer:
+          "The interlocking page covers patios, driveways, walkways, poolside areas, and other hardscape surfaces."
+      },
+      {
+        question: "Why does the base matter for interlocking?",
+        answer:
+          "A compacted base helps the finished paver surface resist shifting, low spots, and uneven settlement through seasonal use."
+      },
+      {
+        question: "Can HR Greenroots help with layout and material choices?",
+        answer:
+          "Yes. The page describes planning patterns, borders, tones, and layouts that suit the home and surrounding landscape."
+      },
+      {
+        question: "Where is interlocking and paver installation available?",
+        answer: `HR Greenroots lists service coverage across ${serviceAreas.join(", ")}.`
+      }
+    ]
+  },
+  "professional-fence-installation": {
+    proof: [
+      {
+        title: "Privacy-led planning",
+        text: "Fence height, openings, spacing, and layout are framed around the privacy and security the property actually needs."
+      },
+      {
+        title: "Cleaner yard definition",
+        text: "The page positions fencing as a way to organize the yard, define boundaries, and improve the overall finished look."
+      },
+      {
+        title: "Material-fit decisions",
+        text: "Fence type is matched to durability, maintenance, budget, and visual goals rather than using one generic option."
+      }
+    ],
+    quoteFactors: [
+      {
+        title: "Privacy level",
+        text: "The source page frames fence height, layout, and spacing around the level of screening the property needs."
+      },
+      {
+        title: "Layout and openings",
+        text: "The process starts with reviewing property lines, openings, desired privacy level, and fence style."
+      },
+      {
+        title: "Finish details",
+        text: "The source process includes alignment, gates, transitions, and visual details across the final fence run."
+      }
+    ],
+    keywords: [
+      "fence installation",
+      "privacy fence",
+      "wood fence installation",
+      "Toronto fence installer",
+      "GTA fence contractor"
+    ],
+    faqs: [
+      {
+        question: "What does HR Greenroots review before fence installation?",
+        answer:
+          "The source page says the team reviews the property line, openings, desired privacy level, and the most appropriate fence style."
+      },
+      {
+        question: "Can HR Greenroots help choose the right fence style?",
+        answer:
+          "Yes. The fence page describes helping clients choose height, material, and configuration based on screening, appearance, durability, and maintenance."
+      },
+      {
+        question: "Does the fence page focus only on boundary lines?",
+        answer:
+          "No. HR Greenroots also frames fence installation around privacy, security, yard definition, and how the fence connects visually to the rest of the outdoor space."
+      },
+      {
+        question: "Where is professional fence installation available?",
+        answer: `HR Greenroots lists service coverage across ${serviceAreas.join(", ")}.`
+      }
+    ]
+  },
+  "professional-deck-design-installation": {
+    proof: [
+      {
+        title: "Designed around real use",
+        text: "Deck size, stairs, access, seating, dining, and lounging are considered before the build is treated as a footprint."
+      },
+      {
+        title: "Integrated with the yard",
+        text: "The deck is planned to connect with the home, lawn, planting, paving, and the rest of the backyard layout."
+      },
+      {
+        title: "Structure and finish together",
+        text: "The page speaks to framing, safety, alignment, access, and finish details as one connected project."
+      }
+    ],
+    quoteFactors: [
+      {
+        title: "Everyday use",
+        text: "The source page describes deck layouts planned around lounging, dining, circulation, and long-term outdoor use."
+      },
+      {
+        title: "Home and yard connection",
+        text: "Deck planning is described around how the space connects the house, lawn, and surrounding landscape."
+      },
+      {
+        title: "Structure and finish",
+        text: "The process includes planning the footprint, building the structure, and refining access, edges, and integration."
+      }
+    ],
+    keywords: [
+      "deck design",
+      "deck installation",
+      "custom deck builder",
+      "Mississauga deck installation",
+      "GTA deck contractor"
+    ],
+    faqs: [
+      {
+        question: "How does HR Greenroots plan a deck project?",
+        answer:
+          "The source page says the team reviews how the space will be used, where the deck should sit, and how it should connect back to the house."
+      },
+      {
+        question: "Does HR Greenroots design decks or only install them?",
+        answer:
+          "The deck page positions the service around both design and installation, including layout, access points, and integration with the backyard."
+      },
+      {
+        question: "Can a deck be planned with other landscaping work?",
+        answer:
+          "Yes. The page emphasizes connecting the deck with planting, paving, lawn areas, and the home architecture."
+      },
+      {
+        question: "Where is professional deck design and installation available?",
+        answer: `HR Greenroots lists service coverage across ${serviceAreas.join(", ")}.`
+      }
+    ]
+  },
+  "garden-suite": {
+    proof: [
+      {
+        title: "Site planning first",
+        text: "Garden suites are framed around access, privacy, footprint, visibility, yard use, and relationship to the main home."
+      },
+      {
+        title: "Built for real use cases",
+        text: "The page speaks to family space, guest use, office use, and rental opportunities without ignoring the surrounding landscape."
+      },
+      {
+        title: "Landscape integration",
+        text: "Walkways, lawn, planting, exterior transitions, and usable outdoor space are considered around the suite."
+      }
+    ],
+    quoteFactors: [
+      {
+        title: "Intended use",
+        text: "The source page describes garden suites for extra family space, guest use, office use, or rental opportunity."
+      },
+      {
+        title: "Siting and circulation",
+        text: "The process starts with placement, circulation, visibility, and relationship to the primary home and yard."
+      },
+      {
+        title: "Surrounding landscape",
+        text: "The source page emphasizes access, transitions, exterior context, and landscape support around the suite."
+      }
+    ],
+    keywords: [
+      "garden suite",
+      "backyard suite",
+      "garden suite design",
+      "Toronto garden suite",
+      "GTA backyard living space"
+    ],
+    faqs: [
+      {
+        question: "What garden suite uses does HR Greenroots mention?",
+        answer:
+          "The source page mentions extra family space, a guest suite, an office, or a rental opportunity."
+      },
+      {
+        question: "Why does landscaping matter for a garden suite?",
+        answer:
+          "The page explains that access, privacy, walkways, lawn, planting, and exterior context help the suite feel like part of the property instead of a separate object."
+      },
+      {
+        question: "Can a garden suite be used for more than one purpose?",
+        answer:
+          "The source page describes uses such as extra family space, a guest suite, an office, or a rental opportunity."
+      },
+      {
+        question: "Where are garden suite services available?",
+        answer: `HR Greenroots lists service coverage across ${serviceAreas.join(", ")}.`
+      }
+    ]
+  }
+};
+
+export function absoluteUrl(path: string) {
+  if (path.startsWith("http")) {
+    return path;
+  }
+
+  return `${siteUrl}${path}`;
+}

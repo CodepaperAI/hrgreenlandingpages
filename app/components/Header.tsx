@@ -1,19 +1,29 @@
 "use client";
 
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, ChevronDown, Phone } from "lucide-react";
 import { phoneHref } from "@/app/data/services";
 
 export function Header() {
   return (
     <header className="site-header">
-      <div className="brand-link" aria-label="HR Greenroots Landscaping">
+      <a className="brand-link" href="#top" aria-label="HR Greenroots Landscaping">
         <img
           src="/images/hr-greenroots-logo-transparent.png"
           alt="HR Greenroots Landscaping"
           className="brand-logo"
         />
-      </div>
+      </a>
 
+      <nav className="site-nav" aria-label="Landing page sections">
+        <a href="#top">Home</a>
+        <a href="#gallery">Project</a>
+        <a href="#overview">
+          Services
+          <ChevronDown size={13} aria-hidden="true" />
+        </a>
+        <a href="#faq">Resources</a>
+        <a href="#quote">Contact</a>
+      </nav>
       <div className="header-actions">
         <a className="header-call" href={phoneHref}>
           <Phone size={18} aria-hidden="true" />
