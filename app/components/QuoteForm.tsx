@@ -50,8 +50,9 @@ export function QuoteForm({ serviceName }: { serviceName: string }) {
       });
 
       setState("success");
-      setMessage("Thanks. Your request was sent to HR Greenroots.");
-      form.reset();
+      setMessage("Thanks. Redirecting you to the confirmation page.");
+      const service = encodeURIComponent(String(payload.service || serviceName));
+      window.location.assign(`/thank-you?service=${service}`);
     } catch (error) {
       setState("error");
       setMessage(error instanceof Error ? error.message : "Please try again.");

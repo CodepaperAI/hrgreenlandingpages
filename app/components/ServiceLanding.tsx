@@ -188,16 +188,6 @@ export function ServiceLanding({ service }: { service: Service }) {
           </aside>
         </section>
 
-        <section className="trust-strip" aria-label="HR Greenroots contact and service proof">
-          {defaultProofPoints.map((point) => (
-            <article key={point.title}>
-              <ShieldCheck size={22} aria-hidden="true" />
-              <strong>{point.title}</strong>
-              <span>{point.text}</span>
-            </article>
-          ))}
-        </section>
-
         <section className="section quote-band">
           <div className="quote-band-copy">
             <p className="eyebrow">Request a Quote</p>
@@ -208,6 +198,16 @@ export function ServiceLanding({ service }: { service: Service }) {
             </p>
           </div>
           <QuoteForm serviceName={service.name} />
+        </section>
+
+        <section className="trust-strip" aria-label="HR Greenroots contact and service proof">
+          {defaultProofPoints.map((point) => (
+            <article key={point.title}>
+              <ShieldCheck size={22} aria-hidden="true" />
+              <strong>{point.title}</strong>
+              <span>{point.text}</span>
+            </article>
+          ))}
         </section>
 
         <section className="section split-section" id="overview">
