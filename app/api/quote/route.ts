@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  if (!payload.name || !payload.phone || !payload.email || !payload.service || !payload.details) {
+  if (!payload.name || !payload.phone || !payload.email || !payload.service) {
     return NextResponse.json(
       { message: "Please complete the required fields." },
       { status: 400 }
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     ["City", payload.city || "Not provided"],
     ["Timeline", payload.timeline || "Not provided"],
     ["Page", payload.pageUrl || "Not provided"],
-    ["Details", payload.details]
+    ["Details", payload.details || "Not provided"]
   ];
 
   const htmlRows = rows

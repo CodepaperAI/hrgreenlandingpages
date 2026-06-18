@@ -1,8 +1,7 @@
 "use client";
 
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-import { FormEvent, useMemo, useState } from "react";
-import { services } from "@/app/data/services";
+import { FormEvent, useState } from "react";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -15,7 +14,6 @@ declare global {
 export function QuoteForm({ serviceName }: { serviceName: string }) {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
-  const serviceOptions = useMemo(() => services.map((service) => service.name), []);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -84,16 +82,11 @@ export function QuoteForm({ serviceName }: { serviceName: string }) {
         </label>
       </div>
 
-      <label>
-        Service
-        <select name="service" defaultValue={serviceName} required>
-          {serviceOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
+      <input type="hidden" name="service" value={serviceName} />
+      <div className="locked-service" aria-label={`Selected service: ${serviceName}`}>
+        <span>Service</span>
+        <strong>{serviceName}</strong>
+      </div>
 
       <div className="form-row">
         <label>
@@ -112,12 +105,14 @@ export function QuoteForm({ serviceName }: { serviceName: string }) {
       </div>
 
       <label>
-        Project details
+        <span className="label-line">
+          Project details
+          <span className="optional-label">Optional</span>
+        </span>
         <textarea
           name="details"
-          rows={4}
-          placeholder="Share the property type, rough size, and what you want improved."
-          required
+          rows={3}
+          placeholder="Share the property type, rough size, or what you want improved."
         />
       </label>
 

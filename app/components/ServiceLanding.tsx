@@ -29,6 +29,7 @@ import {
 export function ServiceLanding({ service }: { service: Service }) {
   const pageUrl = `${siteUrl}/services/${service.slug}`;
   const adContent = serviceAdContent[service.slug];
+  const projectDetailItems = [...adContent.proof, ...adContent.quoteFactors];
   const areaServed = serviceAreas.map((area) => ({
     "@type": "City",
     name: area
@@ -137,6 +138,8 @@ export function ServiceLanding({ service }: { service: Service }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
         />
         <section className="service-hero" id="top">
+          <img className="service-hero-bg" src={service.heroImage.src} alt="" aria-hidden="true" />
+          <div className="service-hero-shade" aria-hidden="true" />
           <div className="hero-inner">
             <div className="hero-copy">
               <nav className="breadcrumb" aria-label="Breadcrumb">
@@ -168,36 +171,10 @@ export function ServiceLanding({ service }: { service: Service }) {
                 ))}
               </div>
             </div>
-            <aside className="hero-art" aria-label={`${service.name} project imagery`}>
-              <img className="hero-art-main" src={service.heroImage.src} alt={service.heroImage.alt} />
-              <img
-                className="hero-art-small"
-                src={service.secondaryImage.src}
-                alt={service.secondaryImage.alt}
-              />
-              <div className="hero-art-badge">
-                <span>Starting Point</span>
-                <strong>{service.badgeTitle}</strong>
-                <p>{service.badgeText}</p>
-              </div>
+            <aside className="hero-form-panel" aria-label={`Request a ${service.name} quote`}>
+              <QuoteForm serviceName={service.name} />
             </aside>
           </div>
-          <aside className="hero-step-card">
-            <span>{service.process[0].title}</span>
-            <p>{service.process[0].text}</p>
-          </aside>
-        </section>
-
-        <section className="section quote-band">
-          <div className="quote-band-copy">
-            <p className="eyebrow">Request a Quote</p>
-            <h2>Tell HR Greenroots what you want the property to do better.</h2>
-            <p>
-              This form keeps the ad page focused on one service while still giving
-              the team enough context to follow up by phone or email.
-            </p>
-          </div>
-          <QuoteForm serviceName={service.name} />
         </section>
 
         <section className="trust-strip" aria-label="HR Greenroots contact and service proof">
@@ -228,18 +205,17 @@ export function ServiceLanding({ service }: { service: Service }) {
           </aside>
         </section>
 
-        <section className="section">
+        <section className="section details-section">
           <div className="section-heading">
-            <p className="eyebrow">Source-Based Service Details</p>
-            <h2>Clear details for homeowners comparing {service.name.toLowerCase()}.</h2>
+            <p className="eyebrow">Source-backed service details</p>
+            <h2>What matters for {service.name.toLowerCase()}.</h2>
             <p>
-              These points are arranged from HR Greenroots service content so ad
-              visitors see the relevant scope, process, and local coverage without
-              leaving the page.
+              These points are condensed from HR Greenroots service content so visitors
+              can quickly understand the scope, planning criteria, and expected outcome.
             </p>
           </div>
-          <div className="detail-grid">
-            {adContent.proof.map((point, index) => (
+          <div className="detail-grid compact-detail-grid">
+            {projectDetailItems.map((point, index) => (
               <article className="detail-card compact-card" key={point.title}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <ClipboardCheck size={22} aria-hidden="true" />
@@ -248,35 +224,14 @@ export function ServiceLanding({ service }: { service: Service }) {
               </article>
             ))}
           </div>
-        </section>
 
-        <section className="section estimate-section">
-          <div className="section-heading">
-            <p className="eyebrow">Project Criteria From The Source Page</p>
-            <h2>What the original HR Greenroots content says matters for this service.</h2>
-            <p>
-              This section turns the service page copy into scannable decision points
-              for homeowners who are comparing options from an ad click.
-            </p>
-          </div>
-          <div className="estimate-grid">
-            {adContent.quoteFactors.map((factor) => (
-              <article key={factor.title}>
-                <h3>{factor.title}</h3>
-                <p>{factor.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section-heading">
-            <p className="eyebrow">{service.benefitsEyebrow}</p>
-            <h2>{service.fitTitle}</h2>
-          </div>
-          <div className="detail-grid">
+          <div className="value-panel">
+            <div>
+              <p className="eyebrow">{service.benefitsEyebrow}</p>
+              <h2>{service.fitTitle}</h2>
+            </div>
             {service.benefits.map((benefit, index) => (
-              <article className="detail-card" key={benefit.title}>
+              <article className="value-card" key={benefit.title}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <CheckCircle2 size={22} aria-hidden="true" />
                 <h3>{benefit.title}</h3>
@@ -303,21 +258,20 @@ export function ServiceLanding({ service }: { service: Service }) {
           </div>
         </section>
 
-        <section className="section gallery-section" id="gallery">
-          <div className="section-heading">
-            <p className="eyebrow">Project Inspiration</p>
-            <h2>{service.name} visuals that match the scope and finish quality.</h2>
+        <section className="section gallery-coverage-section" id="gallery">
+          <div className="gallery-panel">
+            <div className="section-heading">
+              <p className="eyebrow">Project Inspiration</p>
+              <h2>{service.name} visuals that match the scope and finish quality.</h2>
+            </div>
+            <div className="gallery-grid">
+              {service.gallery.map((image) => (
+                <figure key={image.src}>
+                  <img src={image.src} alt={image.alt} loading="lazy" />
+                </figure>
+              ))}
+            </div>
           </div>
-          <div className="gallery-grid">
-            {service.gallery.map((image) => (
-              <figure key={image.src}>
-                <img src={image.src} alt={image.alt} loading="lazy" />
-              </figure>
-            ))}
-          </div>
-        </section>
-
-        <section className="section coverage-section">
           <div className="coverage-panel">
             <div>
               <p className="eyebrow">Local Coverage</p>
