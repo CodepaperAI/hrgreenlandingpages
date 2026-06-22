@@ -59,7 +59,7 @@ export const address =
   "100 Matheson Blvd E unit 202, Mississauga, ON L4Z 3P8, Canada";
 export const sourceSite = "https://www.hrgreenrootslandscaping.com";
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://hrgreenroots-ads.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://service.hrgreenrootslandscaping.com";
 export const businessName = "HR Greenroots Landscaping";
 export const instagramUrl = "https://www.instagram.com/hrgreenroots";
 
@@ -816,3 +816,4 @@ export function absoluteUrl(path: string) {
 
   return `${siteUrl}${path}`;
 }
+
